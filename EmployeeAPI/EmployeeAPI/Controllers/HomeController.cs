@@ -10,7 +10,7 @@ namespace EmployeeAPI.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "Employees";
 
             return View();
         }

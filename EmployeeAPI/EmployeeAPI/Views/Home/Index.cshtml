@@ -9,7 +9,7 @@
         <p ng-hide="employees.length &gt; 0">Loading...</p>
         <ul ng-show ="employees.length &gt; 0">
             <li ng-repeat="employee in employees">
-                <a ng-click="selectEmployee(employee)">{{employee.FullName()}}</a>
+                <a ng-click="getEmployee(employee.EmployeeId)">{{employee.FullName()}}</a>
             </li>
         </ul>
     </div>

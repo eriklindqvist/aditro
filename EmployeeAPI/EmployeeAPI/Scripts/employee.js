@@ -17,18 +17,33 @@ empApp.controller('EmployeeController', function EmployeeController($scope, $htt
 
     // Get all employees
     $http.get('/api/employees')
-        .then(function (res) {
+        .success(function (data, status, headers, config) {
             // For each of the employees in the JSON result
-            angular.forEach(res.data, function (value) {
+            angular.forEach(data, function (value) {
                 // Create an Employee-object and push to the employees array
                 $scope.employees.push(new Employee(value));
             });
+        })
+        .error(function (data, status, headers, config) {
+            // TODO:
+            alert(data);
         });
 
     // Function for selecting an employee from the employees list
     $scope.selectEmployee = function (employee) {
         $scope.currentEmployee = employee;
     }
+
+    $scope.getEmployee = function (id) {
+        $http.get('/api/employees/' + id)
+            .success(function (data, status, headers, config) {
+                $scope.selectEmployee(new Employee(data));
+            })
+            .error(function (data, status, headers, config) {
+                // TODO:
+                alert(data);
+            });
+    }    
 
     // Show all members, excluding error messages and prototype methods
     $scope.Members = function (employee) {

@@ -52,6 +52,7 @@ namespace EmployeeAPI.Models
                     // If requested company does not exist, return empty string.
                     if (response.StatusCode == HttpStatusCode.NotFound)
                     {
+                        this.Error = response.StatusDescription;
                         return "";
                     }
 
@@ -63,6 +64,9 @@ namespace EmployeeAPI.Models
             set { } // Trick the XML serializer to include the Company field
         }
 
+        [NotMapped] // Do not create column in DB
+        public string Error { get; set; }
+        
         private Company jsonToCompany(string json)
         {
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Company));

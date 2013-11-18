@@ -18,12 +18,15 @@
         <h2>Details</h2>
         <table>
             <thead>
+                <tr ng-if="currentEmployee.Error">
+                    <td colspan="2" class="error">Error: {{currentEmployee.Error}} - please contact system administrator</td>
+                </tr>
                 <tr>
                     <td colspan="2">Details for {{currentEmployee.FullName()}}</td>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="(property, value) in currentEmployee">
+                <tr ng-repeat="(property, value) in Members(currentEmployee)">
                     <td>{{property}}</td>
                     <td>{{value}}</td>
                 </tr>

@@ -29,5 +29,15 @@ empApp.controller('EmployeeController', function EmployeeController($scope, $htt
     $scope.selectEmployee = function (employee) {
         $scope.currentEmployee = employee;
     }
+
+    // Show all members, excluding error messages and prototype methods
+    $scope.Members = function (employee) {
+        var result = {};
+        for (var key in employee) {
+            if (key  != "Error" && key != "FullName")
+                result[key] = employee[key];
+        }
+        return result;
+    };
 });
 

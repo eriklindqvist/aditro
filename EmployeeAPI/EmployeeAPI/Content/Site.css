@@ -40,3 +40,15 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+table thead tr td {
+    font-weight: bold;
+    color: green;
+}
+
+table thead tr td.error {
+    font-weight: bold;
+    color: red;
+    border: 1px solid black;
+    background-color: #fee;
+}

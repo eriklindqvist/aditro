@@ -15,7 +15,7 @@ Employee.prototype.FullName = function () {
 empApp.controller('EmployeeController', function EmployeeController($scope, $http) {    
     $scope.employees = new Array();
 
-    // Get all employees
+    // Get all employees from /api/employees
     $http.get('/api/employees')
         .success(function (data, status, headers, config) {
             // For each of the employees in the JSON result
@@ -23,10 +23,6 @@ empApp.controller('EmployeeController', function EmployeeController($scope, $htt
                 // Create an Employee-object and push to the employees array
                 $scope.employees.push(new Employee(value));
             });
-        })
-        .error(function (data, status, headers, config) {
-            // TODO:
-            alert(data);
         });
 
     // Function for selecting an employee from the employees list
@@ -34,14 +30,14 @@ empApp.controller('EmployeeController', function EmployeeController($scope, $htt
         $scope.currentEmployee = employee;
     }
 
+    // Get employee from /api/employees/{id}
     $scope.getEmployee = function (id) {
         $http.get('/api/employees/' + id)
             .success(function (data, status, headers, config) {
                 $scope.selectEmployee(new Employee(data));
             })
             .error(function (data, status, headers, config) {
-                // TODO:
-                alert(data);
+                $scope.selectEmployee(new Employee({ "Error": data }));
             });
     }    
 

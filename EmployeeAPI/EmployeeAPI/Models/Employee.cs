@@ -37,6 +37,7 @@ namespace EmployeeAPI.Models
         [NotMapped] // Do not create column in DB
         public string Company
         {
+            // Fetch company name from external resource
             get
             {
                 try
@@ -49,7 +50,7 @@ namespace EmployeeAPI.Models
                 {
                     HttpWebResponse response = (HttpWebResponse)e.Response;
 
-                    // If requested company does not exist, return empty string.
+                    // If requested company does not exist, return empty string and set Error property
                     if (response.StatusCode == HttpStatusCode.NotFound)
                     {
                         this.Error = response.StatusDescription;

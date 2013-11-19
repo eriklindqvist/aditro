@@ -7,6 +7,7 @@ using System.Web;
 
 namespace EmployeeAPI.Models
 {
+    // Simple class for JSON deserialization
     public class Company
     {
         public int CompanyId { get; set; }

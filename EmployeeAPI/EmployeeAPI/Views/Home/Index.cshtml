@@ -21,7 +21,7 @@
                 <tr ng-if="currentEmployee.Error">
                     <td colspan="2" class="error">Error: {{currentEmployee.Error}} - please contact system administrator</td>
                 </tr>
-                <tr>
+                <tr ng-show="currentEmployee.FirstName">
                     <td colspan="2">Details for {{currentEmployee.FullName()}}</td>
                 </tr>
             </thead>

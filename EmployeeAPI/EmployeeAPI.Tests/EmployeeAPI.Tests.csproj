@@ -98,6 +98,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\EmployeesControllerTest.cs" />
+    <Compile Include="Database\EmployeeTestContext.cs" />
+    <Compile Include="Database\EmployeeTestDbSet.cs" />
+    <Compile Include="Database\TestDbAsyncQueryProvider.cs" />
+    <Compile Include="Database\TestDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
   </ItemGroup>

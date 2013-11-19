@@ -10,7 +10,7 @@ using EmployeeAPI.Controllers;
 
 namespace EmployeeAPI.Tests.Controllers
 {
-    [TestClass]
+    /*[TestClass]*/
     public class ValuesControllerTest
     {
         [TestMethod]

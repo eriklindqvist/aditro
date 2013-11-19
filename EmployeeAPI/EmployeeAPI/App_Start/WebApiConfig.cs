@@ -20,7 +20,8 @@ namespace EmployeeAPI
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");            
+            // Use XmlSerializer over DataContractSerializer for XML serialization
+            var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");        
         }
     }
 }

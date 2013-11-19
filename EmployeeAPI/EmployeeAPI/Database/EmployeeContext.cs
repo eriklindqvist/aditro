@@ -7,7 +7,7 @@ using System.Web;
 
 namespace EmployeeAPI.Database
 {
-    public class EmployeeContext : DbContext
+    public class EmployeeContext : DbContext, IEmployeeContext
     {
         public EmployeeContext() : base("EmployeeContext")
         {}

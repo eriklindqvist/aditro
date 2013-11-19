@@ -41,8 +41,8 @@ namespace EmployeeAPI.Models
             {
                 try
                 {
-                    var json = new WebClient().DownloadString("http://novacompanysvc.azurewebsites.net/api/companies/" + CompanyId);
-                    var company = jsonToCompany(json);
+                    var json = new WebClient().DownloadString("http://novacompanysvc.azurewebsites.net/api/companies/" + this.CompanyId);
+                    var company = JsonConvert.DeserializeObject<Company>(json);
                     return company.Name;
                 }
                 catch (WebException e)
@@ -65,16 +65,7 @@ namespace EmployeeAPI.Models
         }
 
         [NotMapped] // Do not create column in DB
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)] // Hide in JSON if null
         public string Error { get; set; }
-        
-        private Company jsonToCompany(string json)
-        {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Company));
-            
-            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(json)))
-            {
-                return (Company) serializer.ReadObject(ms);
-            }
-        }
     }
 }

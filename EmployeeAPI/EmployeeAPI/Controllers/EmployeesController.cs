@@ -16,25 +16,39 @@ namespace EmployeeAPI.Controllers
 {
     public class EmployeesController : ApiController
     {
-        private EmployeeContext db = new EmployeeContext();
+        private IEmployeeContext context;
+
+        public EmployeesController()
+        {
+            this.context = new EmployeeContext();
+        }
+
+        public EmployeesController(IEmployeeContext context)
+        {
+            this.context = context;
+        }
 
         // GET api/Employees
         public IQueryable<Employee> GetEmployees()
         {
-            return db.Employees;
+            return context.Employees;
         }
 
         // GET api/Employees/5
-        [ResponseType(typeof(Employee))]
-        public async Task<IHttpActionResult> GetEmployee(int id)
+        public Employee GetEmployee(int id)
         {
-            Employee employee = await db.Employees.FindAsync(id);
+            var employee = this.context.Employees.Find(id);
+            
             if (employee == null)
             {
-                return NotFound();
+                throw new HttpResponseException(new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Content = new StringContent("Employee not found")
+                });
             }
 
-            return Ok(employee);
+            return employee;
         }
     }
 }
